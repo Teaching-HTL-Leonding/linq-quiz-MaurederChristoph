@@ -5,17 +5,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
-namespace LinqQuiz.Tests
-{
-    public class Person : IPerson
-    {
+namespace LinqQuiz.Tests {
+    public class Person : IPerson {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public decimal Age { get; set; }
     }
 
-    public class Family : IFamily
-    {
+    public class Family : IFamily {
         public int ID { get; set; }
 
         public IPerson[] PersonArray { get; set; } = Array.Empty<IPerson>();
@@ -24,11 +21,9 @@ namespace LinqQuiz.Tests
     }
 
 
-    public class FamilyStatistic
-    {
+    public class FamilyStatistic {
         [Fact]
-        public void CurrectResult()
-        {
+        public void CurrectResult() {
             var families = new[] {
                 new Family
                 {
@@ -59,8 +54,7 @@ namespace LinqQuiz.Tests
         }
 
         [Fact]
-        public void EmptyFamily()
-        {
+        public void EmptyFamily() {
             var families = new[] { new Family { ID = 1, PersonArray = new Person[0] } };
 
             var result = Quiz.GetFamilyStatistic(families);
@@ -71,8 +65,7 @@ namespace LinqQuiz.Tests
         }
 
         [Fact]
-        public void InvalidArgument()
-        {
+        public void InvalidArgument() {
             Assert.Throws<ArgumentNullException>(() => Quiz.GetFamilyStatistic(null!));
         }
     }
